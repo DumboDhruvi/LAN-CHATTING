@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAN Chat - {{ group_name }}</title>
+</head>
+<body>
+    <h1>Group: {{ group_name }}</h1>
+    <h2>Chat as: {{ username }}</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <textarea name="content" placeholder="Type your message here..." required></textarea>
+        <button type="submit">Send</button>
+    </form>
+
+    <div id="chat-messages">
+        {% for message in messages %}
+            <p><strong>{{ message.username }}</strong>: {{ message.content }} <em>{{ message.timestamp }}</em></p>
+        {% endfor %}
+    </div>
+</body>
+</html>

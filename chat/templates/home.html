@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAN Chat - Home</title>
+</head>
+<body>
+    <h1>Welcome to LAN Chat</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Enter your name" required>
+        
+        <select name="group_name" required>
+            <option value="">Select or Create a Group</option>
+            {% for group in existing_groups %}
+                <option value="{{ group }}">{{ group }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="text" name="new_group_name" placeholder="Or enter a new group name (if needed)">
+        <button type="submit">Join Group</button>
+    </form>
+</body>
+</html>
